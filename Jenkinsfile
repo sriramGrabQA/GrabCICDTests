@@ -1,11 +1,12 @@
 pipeline {
   agent any
   stages {
-    stage('SDP Tests') {
+    stage('Sanity Tests') {
       parallel {
         stage('SDP Tests') {
           steps {
-            sh 'echo SDP Tests running'
+            sh '''echo SDP Tests running
+pwd'''
           }
         }
 
