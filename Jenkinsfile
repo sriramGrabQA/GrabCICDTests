@@ -12,7 +12,8 @@ pwd'''
 
         stage('VF Tests') {
           steps {
-            sh 'echo VF Tests running'
+            sh '''echo VF Tests running
+python3 -m robot CICD_Sanity_SIT.robot'''
           }
         }
 
