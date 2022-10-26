@@ -13,7 +13,7 @@ pwd'''
         stage('VF Tests') {
           steps {
             sh '''echo VF Tests running
-python3 -m robot CICD_Sanity_SIT.robot'''
+/Library/Frameworks/Python.framework/Versions/3.10/bin/python3 -m robot CICD_Sanity_SIT.robot'''
           }
         }
 
