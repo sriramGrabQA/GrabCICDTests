@@ -1,237 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 5.0.1 (Python 3.9.6 on darwin)" generated="20221014 18:57:03.236" rpa="false" schemaversion="3">
-<suite id="s1" name="CICD Sanity SIT" source="/Users/silicon/pyProjects/GrabRobot-main/CICD_Sanity_SIT.robot">
-<test id="s1-t1" name="01. To check the working of Create Order API" line="11">
+<robot generator="Robot 6.0 (Python 3.10.0 on darwin)" generated="20221027 13:55:45.123" rpa="false" schemaversion="3">
+<suite id="s1" name="CICD SDP Sanity SIT" source="/Users/silicon/pyProjects/GrabCICDTests/CICD_SDP_Sanity_SIT.robot">
+<test id="s1-t1" name="01. To check the working of SDP Create Order API" line="11">
 <kw name="Log To Console" library="BuiltIn">
 <arg>\n Entering payload and calling the Create Order API \n</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20221014 18:57:03.566" endtime="20221014 18:57:03.566"/>
+<status status="PASS" starttime="20221027 13:55:45.206" endtime="20221027 13:55:45.206"/>
 </kw>
-<kw name="Check Create Order" library="APIcalls">
+<kw name="Check Create Order SDP" library="APIcalls">
 <var>${order_id}</var>
-<msg timestamp="20221014 18:57:03.974" level="INFO">${order_id} = AutomateDeliveryFOPST</msg>
-<status status="PASS" starttime="20221014 18:57:03.566" endtime="20221014 18:57:03.974"/>
+<arg>SIT</arg>
+<msg timestamp="20221027 13:55:45.839" level="INFO">${order_id} = SDPTripEMZ7F</msg>
+<status status="PASS" starttime="20221027 13:55:45.206" endtime="20221027 13:55:45.839"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${order_id}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20221014 18:57:03.974" endtime="20221014 18:57:03.975"/>
+<status status="PASS" starttime="20221027 13:55:45.840" endtime="20221027 13:55:45.840"/>
 </kw>
-<kw name="Log To Console" library="BuiltIn">
-<arg>\n reading order logs please wait one minute</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20221014 18:57:03.975" endtime="20221014 18:57:03.975"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>60 seconds</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20221014 18:58:03.976" level="INFO">Slept 1 minute</msg>
-<status status="PASS" starttime="20221014 18:57:03.975" endtime="20221014 18:58:03.976"/>
-</kw>
-<kw name="Read Create Order Logs" library="APIcalls">
-<var>@{create_order_logs}</var>
-<arg>webber</arg>
-<arg>Pass@123</arg>
-<msg timestamp="20221014 18:58:05.196" level="INFO">@{create_order_logs} = [ 
-[2022-10-14 18:02:10] All Order Details : {
-  "clientId": "2535",
-  "order_details": [
-    {
-      "order_id": "16657504680000175W-01",
-      "invoice_id": "16657504680000175W-01",
-      "ord...</msg>
-<status status="PASS" starttime="20221014 18:58:03.976" endtime="20221014 18:58:05.196"/>
-</kw>
-<kw name="String Contains" library="APIcalls">
-<var>${flag}</var>
-<arg>${create_order_logs}[0]</arg>
-<arg>Success Order Details : [{"res":{"message":"success","errorCode":"0","bulk_order_id":1,"pos_order_id":["${order_id}</arg>
-<msg timestamp="20221014 18:58:05.197" level="INFO">${flag} = True</msg>
-<status status="PASS" starttime="20221014 18:58:05.196" endtime="20221014 18:58:05.197"/>
-</kw>
-<kw name="Should Be Equal" library="BuiltIn">
-<arg>${flag}</arg>
-<arg>${true}</arg>
-<arg>The Create API is failed, please see the below logs \n${create_order_logs}[1]</arg>
-<doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20221014 18:58:05.197" endtime="20221014 18:58:05.198"/>
-</kw>
-<status status="PASS" starttime="20221014 18:57:03.565" endtime="20221014 18:58:05.198"/>
+<status status="PASS" starttime="20221027 13:55:45.205" endtime="20221027 13:55:45.840"/>
 </test>
-<test id="s1-t2" name="02. To check the working of Update Order API" line="21">
-<kw name="Log To Console" library="BuiltIn">
-<arg>\n Entering payload and calling the Update Order API</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20221014 18:58:05.199" endtime="20221014 18:58:05.199"/>
-</kw>
-<kw name="Check Update Order" library="APIcalls">
-<var>${order_id}</var>
-<msg timestamp="20221014 18:58:05.387" level="INFO">${order_id} = AutomateDeliveryFOPST</msg>
-<status status="PASS" starttime="20221014 18:58:05.199" endtime="20221014 18:58:05.387"/>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<arg>${order_id}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20221014 18:58:05.387" endtime="20221014 18:58:05.388"/>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<arg>\n reading order logs please wait one minute</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20221014 18:58:05.388" endtime="20221014 18:58:05.388"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>60 seconds</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20221014 18:59:05.388" level="INFO">Slept 1 minute</msg>
-<status status="PASS" starttime="20221014 18:58:05.388" endtime="20221014 18:59:05.389"/>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<arg>\n reading order logs please wait one minute</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20221014 18:59:05.389" endtime="20221014 18:59:05.389"/>
-</kw>
-<kw name="Read Update Order Logs" library="APIcalls">
-<var>@{update_order_logs}</var>
-<arg>webber</arg>
-<arg>Pass@123</arg>
-<msg timestamp="20221014 18:59:05.640" level="INFO">@{update_order_logs} = [ 
-[2022-10-14 18:24:04] | All Orders | 
-
-
-{
-  "clientId": "2460",
-  "merchant_id": "5518",
-  "order_id": "AshishKhaOrderIdTest179",
-  "items": [
-    {
-      "category": "HOME CARE",
-      "...</msg>
-<status status="PASS" starttime="20221014 18:59:05.389" endtime="20221014 18:59:05.640"/>
-</kw>
-<kw name="String Contains" library="APIcalls">
-<var>${flag}</var>
-<arg>${update_order_logs}[0]</arg>
-<arg>{"success":"true","errorCode":"0","errorDescription":"","order_id":"${order_id}</arg>
-<msg timestamp="20221014 18:59:05.641" level="INFO">${flag} = True</msg>
-<status status="PASS" starttime="20221014 18:59:05.640" endtime="20221014 18:59:05.641"/>
-</kw>
-<kw name="Should Be Equal" library="BuiltIn">
-<arg>${flag}</arg>
-<arg>${true}</arg>
-<arg>The Update API is failed, please see the below logs \n${update_order_logs}[1]</arg>
-<doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20221014 18:59:05.641" endtime="20221014 18:59:05.642"/>
-</kw>
-<status status="PASS" starttime="20221014 18:58:05.198" endtime="20221014 18:59:05.642"/>
-</test>
-<test id="s1-t3" name="03. To check the working of Login API" line="32">
+<test id="s1-t2" name="02. To check the working of Login API" line="21">
 <kw name="Log To Console" library="BuiltIn">
 <arg>\n Entering payload and calling the login API</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20221014 18:59:05.643" endtime="20221014 18:59:05.643"/>
+<status status="PASS" starttime="20221027 13:55:45.841" endtime="20221027 13:55:45.841"/>
 </kw>
 <kw name="Check Login" library="APIcalls">
 <var>@{response_login}</var>
-<msg timestamp="20221014 18:59:07.006" level="INFO">Entering payload and calling the login API</msg>
-<msg timestamp="20221014 18:59:07.006" level="INFO">@{response_login} = [ success | {'response': 'success', 'error': '0', 'errordesc': '', 'forceupdate': 0, 'name': 'Vinit Naik', 'fatherName': 'N', 'DOB': '1996-10-27', 'DOJ': '2017-10-27', 'drivingLicense': '673a41a4072d9...</msg>
-<status status="PASS" starttime="20221014 18:59:05.643" endtime="20221014 18:59:07.006"/>
+<arg>SIT</arg>
+<msg timestamp="20221027 13:55:47.062" level="INFO">Entering payload and calling the login API</msg>
+<msg timestamp="20221027 13:55:47.062" level="INFO">@{response_login} = [ success | {'response': 'success', 'error': '0', 'errordesc': '', 'forceupdate': 0, 'name': 'Srisai Reddy ', 'fatherName': '', 'DOB': '1970-01-01', 'DOJ': '2021-08-02', 'drivingLicense': '6332e1a129d...</msg>
+<status status="PASS" starttime="20221027 13:55:45.841" endtime="20221027 13:55:47.062"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>The SID is: ${response_login}[2]</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20221014 18:59:07.007" endtime="20221014 18:59:07.007"/>
+<status status="PASS" starttime="20221027 13:55:47.063" endtime="20221027 13:55:47.063"/>
 </kw>
 <kw name="Should Be Equal" library="BuiltIn">
 <arg>${response_login}[0]</arg>
 <arg>success</arg>
 <arg>Login API Failed, request response is ${response_login}[1]</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20221014 18:59:07.007" endtime="20221014 18:59:07.008"/>
+<status status="PASS" starttime="20221027 13:55:47.063" endtime="20221027 13:55:47.064"/>
 </kw>
-<status status="PASS" starttime="20221014 18:59:05.642" endtime="20221014 18:59:07.008"/>
+<status status="PASS" starttime="20221027 13:55:45.841" endtime="20221027 13:55:47.064"/>
 </test>
-<test id="s1-t4" name="04. To check the working of Checkin API" line="38">
+<test id="s1-t3" name="03. To check the working of Checkin API" line="27">
 <kw name="Log To Console" library="BuiltIn">
 <arg>\n Entering payload and calling the checkin API</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20221014 18:59:07.008" endtime="20221014 18:59:07.009"/>
+<status status="PASS" starttime="20221027 13:55:47.064" endtime="20221027 13:55:47.065"/>
 </kw>
 <kw name="Check Checkin" library="APIcalls">
 <var>@{response_checkin}</var>
-<msg timestamp="20221014 18:59:09.254" level="INFO">Entering payload and calling the checkin API
+<arg>SIT</arg>
+<msg timestamp="20221027 13:55:49.237" level="INFO">Entering payload and calling the checkin API
 Entering payload and calling the login API</msg>
-<msg timestamp="20221014 18:59:09.254" level="INFO">@{response_checkin} = [ success | {'response': 'success', 'error': '', 'errordesc': '', 'actionTime': '1665754020000', 'distance': '25.47', 'serverTime': '1665754149000', 'phoneTime': '1665754023000', 'checkoutTime': '1665...</msg>
-<status status="PASS" starttime="20221014 18:59:07.009" endtime="20221014 18:59:09.254"/>
+<msg timestamp="20221027 13:55:49.237" level="INFO">@{response_checkin} = [ success | {'response': 'success', 'error': '', 'errordesc': '', 'actionTime': '1666859100000', 'distance': '25.71', 'serverTime': '1666859149000', 'phoneTime': '1666859145000', 'checkoutTime': '1666...</msg>
+<status status="PASS" starttime="20221027 13:55:47.065" endtime="20221027 13:55:49.237"/>
 </kw>
 <kw name="Should Be Equal" library="BuiltIn">
 <arg>${response_checkin}[0]</arg>
 <arg>success</arg>
 <arg>Checkin API Failed, request response is ${response_checkin}[1]</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20221014 18:59:09.254" endtime="20221014 18:59:09.255"/>
+<status status="PASS" starttime="20221027 13:55:49.237" endtime="20221027 13:55:49.238"/>
 </kw>
-<status status="PASS" starttime="20221014 18:59:07.008" endtime="20221014 18:59:09.255"/>
+<status status="PASS" starttime="20221027 13:55:47.064" endtime="20221027 13:55:49.238"/>
 </test>
-<test id="s1-t5" name="5. To check the working of create order API in Shipsy" line="43">
-<kw name="Log To Console" library="BuiltIn">
-<arg>\n checking the working of Create Order API in Shipsy</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20221014 18:59:09.256" endtime="20221014 18:59:09.256"/>
-</kw>
-<kw name="Check Create Order Api Shipsy" library="APIcalls">
-<var>@{response_create_order_shipsy}</var>
-<msg timestamp="20221014 18:59:09.986" level="INFO">@{response_create_order_shipsy} = [ true | {'success': 'true', 'errorCode': '0', 'errorDescription': '', 'dttm': '2022-10-14 18:59:10'} | AutoShipsyFOPST ]</msg>
-<status status="PASS" starttime="20221014 18:59:09.256" endtime="20221014 18:59:09.986"/>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<arg>${response_create_order_shipsy}[2]</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20221014 18:59:09.986" endtime="20221014 18:59:09.987"/>
-</kw>
-<kw name="Should Be Equal" library="BuiltIn">
-<arg>${response_create_order_shipsy}[0]</arg>
-<arg>true</arg>
-<arg>The Create order Shipsy API has failed and the response is ${response_create_order_shipsy}[1]</arg>
-<doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20221014 18:59:09.987" endtime="20221014 18:59:09.987"/>
-</kw>
-<status status="PASS" starttime="20221014 18:59:09.256" endtime="20221014 18:59:09.987"/>
-</test>
-<test id="s1-t6" name="6. To check the working of update order API in Shipsy" line="49">
-<kw name="Log To Console" library="BuiltIn">
-<arg>\n checking the working of Update Order API in Shipsy</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20221014 18:59:09.988" endtime="20221014 18:59:09.989"/>
-</kw>
-<kw name="Check Update Order Api Shipsy" library="APIcalls">
-<var>@{response_update_order_shipsy}</var>
-<msg timestamp="20221014 18:59:10.668" level="INFO">@{response_update_order_shipsy} = [ true | {'success': 'true', 'errorCode': '0', 'errorDescription': '', 'dttm': '2022-10-14 18:59:10'} | AutoShipsyFOPST ]</msg>
-<status status="PASS" starttime="20221014 18:59:09.989" endtime="20221014 18:59:10.668"/>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<arg>${response_update_order_shipsy}[2]</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20221014 18:59:10.668" endtime="20221014 18:59:10.669"/>
-</kw>
-<kw name="Should Be Equal" library="BuiltIn">
-<arg>${response_update_order_shipsy}[0]</arg>
-<arg>true</arg>
-<arg>The Update Order Shipsy API has failed and the response is ${response_update_order_shipsy}[1]</arg>
-<doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20221014 18:59:10.669" endtime="20221014 18:59:10.669"/>
-</kw>
-<status status="PASS" starttime="20221014 18:59:09.988" endtime="20221014 18:59:10.670"/>
-</test>
-<status status="PASS" starttime="20221014 18:57:03.239" endtime="20221014 18:59:10.670"/>
+<status status="PASS" starttime="20221027 13:55:45.125" endtime="20221027 13:55:49.238"/>
 </suite>
 <statistics>
 <total>
-<stat pass="6" fail="0" skip="0">All Tests</stat>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="6" fail="0" skip="0" id="s1" name="CICD Sanity SIT">CICD Sanity SIT</stat>
+<stat pass="3" fail="0" skip="0" id="s1" name="CICD SDP Sanity SIT">CICD SDP Sanity SIT</stat>
 </suite>
 </statistics>
 <errors>

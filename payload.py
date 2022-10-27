@@ -8,6 +8,8 @@ random_word = ''.join(random.choices(string.ascii_uppercase + string.digits, k=5
 
 trip_id = 'AutomateDelivery' + str(random_word)
 
+sdp_trip_id = 'SDPTrip' + str(random_word)
+
 shipsy_trip_id = 'AutoShipsy' + str(random_word)
 
 milliseconds = int(round(time.time() * 1000))
@@ -45,6 +47,39 @@ create_payload = """<QueueMessage>
     </QueueMessage>"""
 
 create_body = create_payload.replace("{order_id}", trip_id)
+
+create_payload_sdp = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Trip TripId="{trip_id}" StartNode="H004" VehicleNo="KA03JK0065">
+    <Waypoints>
+        <Waypoint Name="SAPANA POLYWEAVE PVT LTD " WaypointId="100002000039101" Sequence="1">
+            <Address AddressLine1="GALA NO 230" AddressLine2="GURU GOVIND SINGH INDUSTRIAL ESTATE, Tha" Pincode="421303" City="Thane" State="Maharashtra" Country="India" Latitude="19.254897" Longitude="73.023479" PhoneNumber="7337376695" Landmark="421303"/>
+            <Labels>
+                <Label LabelId="T1113021286" Type="Tote" Status="Loaded"/>
+                <Label LabelId="MissingTote2_1" Type="Tote" Status="Loaded"/>
+            </Labels>
+            <AssetsAlreadyAvailableAtWaypoint>
+                <Asset Count="0" Type="BagRegular"/>
+                <Asset Count="0" Type="BagBig"/>
+                <Asset Count="14" Type="ToteRegular"/>
+            </AssetsAlreadyAvailableAtWaypoint>
+            <Shipments>
+                <Shipment ShipmentNo="113021286" OrderNo="SSD-0000392030-22" OrderType="B2B" OrderClassification="Forward" PrepaidAmt="0" InvoiceNo="27A1100000121848" SlotStart="2022-03-21T02:30:00Z" SlotEnd="2022-03-21T14:30:00Z" EstimatedArrivalTime="2022-03-18T02:30:00Z" EstimatedDepartureTime="2022-03-18T02:52:30Z" OrderTotal="1500" DeliveryCharge="0">
+                    <Lines>
+                        <Line No="1" ItemId="000000000400003503" ItemDescription="Mung Dal Boost 21121" Quantity="10.0" LineTotal="1500" OrderLineNo="1" UnitOfMeasure="EACH" SodexoEligible="N">
+                            <Labels>
+                                <Label LabelId="T1113021286" Quantity="5.0"/>
+                                <Label LabelId="MissingTote2_1" Quantity="5.0"/>
+                            </Labels>
+                        </Line>
+                    </Lines>
+                    <Payments/>
+                </Shipment>
+            </Shipments>
+        </Waypoint>
+    </Waypoints>
+</Trip>"""
+
+create_body_sdp = create_payload_sdp.replace("{trip_id}", sdp_trip_id)
 
 update_payload = """<QueueMessage>  
     <MessageText><![CDATA[
@@ -111,7 +146,7 @@ update_body = update_payload.replace("{order_id}", trip_id)
 login_payload = '[{"callName":"loginservice"},{"inputData":{"deviceToken":' \
                 '"fuApXIw7RGuw_3FdXTKIgs:APA91bFgKFNq_V5CtLm8rN5dLGHAhZwliW9HJiW-Va58-NcuVg6f-kum6dF3n8VIn' \
                 'GFlGxV0-0c2bBr8RtJIR9ff_A7Ik5dBp0La5250C8AvtoCG6dtvs2HTI7FloV8_2vzgxpALXaYn",' \
-                '"deviceImei":"27e72087721c16f3","uName":"G14926","uPassword":"Test@123","uLat":' \
+                '"deviceImei":"27e72087721c16f3","uName":"G102923","uPassword":"Test@123","uLat":' \
                 '"19.1551442","uLong":"72.8326861","appversion":"7.0.0.23","uIPAddress":"192.168.0.102",' \
                 '"manufacturer":"motorola","model":"moto g(9)","appSource":"2","software_version":"11"}}]'
 
@@ -119,7 +154,7 @@ login_header = {"X-Public": "a9b6886626ca9b4f5dc2391378e5a19dd0615e05369e9cba670
                 "Content-Type": "application/json",
                 "X-Hash": "b4b1705c6611af7d6af04292731dff45291edc17c4823cb46debd115d349b9ad"}
 
-checkin_payload = '[{"callName":"checkin"},{"inputData":{"uName":"G14926","uLat":"19.2985868",' \
+checkin_payload = '[{"callName":"checkin"},{"inputData":{"uName":"G102923","uLat":"19.2985868",' \
                   '"uLong":"72.8499434","datetime":' + str(milliseconds) + ',' \
                   '"appversion":"7.0.0.23","miscData":"1628225953000,27,0,0,1628227513000,0,0",' \
                   '"dutyTimeVal":"0","inactiveDuration":"0.0","deviceImei":"27e72087721c16f3",' \

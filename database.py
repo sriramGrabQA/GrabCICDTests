@@ -1,14 +1,20 @@
 import mysql.connector
 from mysql.connector import Error
+import Constants
 
 
-
-def B2C_execute_query(query):
+def B2C_execute_query(query, env='SIT'):
     try:
-        connection = mysql.connector.connect(host='172.17.2.93',
-                                             database='db_grab_sit',
-                                             user='debashishkha',
-                                             password='Deb@shih#321')
+        if env == 'SIT':
+            connection = mysql.connector.connect(host=Constants.SITDBHOST,
+                                                 database=Constants.SITDBNAME,
+                                                 user=Constants.SITDBUSERNAME,
+                                                 password=Constants.SITDBPASSWORD)
+        elif env == 'PROD':
+            connection = mysql.connector.connect(host=Constants.PRODDBHOST,
+                                                 database=Constants.PRODDBNAME,
+                                                 user=Constants.PRODDBUSERNAME,
+                                                 password=Constants.PRODDBPASSWORD)
         record = ""
         if connection.is_connected():
             db_Info = connection.get_server_info()

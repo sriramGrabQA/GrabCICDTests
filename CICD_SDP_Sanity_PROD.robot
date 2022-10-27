@@ -8,9 +8,9 @@ Library     database.py
 *** Test Cases ***
 
 
-01. To check the working of Create Order API
+01. To check the working of SDP Create Order API
     log to console      \n Entering payload and calling the Create Order API \n
-    ${order_id} =       APIcalls.check_create_order     SIT
+    ${order_id} =       APIcalls.check_create_order_SDP     SIT
     log to console      ${order_id}
     log to console      \n reading order logs please wait one minute
     Sleep   60 seconds
