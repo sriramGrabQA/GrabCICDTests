@@ -6,7 +6,7 @@ pipeline {
         stage('SDP Tests') {
           steps {
             sh '''echo SDP Tests running
-pwd'''
+/Library/Frameworks/Python.framework/Versions/3.10/bin/python3 -m robot CICD_SDP_Sanity_SIT.robot'''
           }
         }
 
